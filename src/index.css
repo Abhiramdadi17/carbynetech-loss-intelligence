@@ -1,0 +1,259 @@
+/* ============================================================
+   CARBYNE TECH — SFX9 Marketing Site
+   Global Design System
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #080a0d;
+  --bg-card: #0f1218;
+  --bg-hover: #161c26;
+  --accent-blue: #00c2ff;
+  --accent-green: #00ff88;
+  --text: #f0f4f8;
+  --text-muted: #6b7a90;
+  --border: rgba(255, 255, 255, 0.07);
+  --border-accent: rgba(0, 194, 255, 0.3);
+  --radius: 8px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  --font-heading: 'Cormorant', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-ui: 'Space Grotesk', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(3.5rem, 6vw, 6.5rem);
+  font-weight: 700;
+  line-height: 1.0;
+}
+
+h2 {
+  font-size: clamp(2.4rem, 4vw, 3.5rem);
+}
+
+h3 {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* ============================================================
+   CUSTOM SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: rgba(0, 194, 255, 0.25); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0, 194, 255, 0.5); }
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section {
+  position: relative;
+  padding: 5rem 0;
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.section-label::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 1px;
+  background: var(--accent-blue);
+  opacity: 0.6;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  padding: 0.65rem 1.4rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  white-space: nowrap;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--accent-blue);
+  color: var(--accent-blue);
+}
+.btn-outline:hover {
+  background: rgba(0, 194, 255, 0.1);
+  box-shadow: 0 0 24px rgba(0, 194, 255, 0.18);
+}
+
+.btn-primary {
+  background: var(--accent-blue);
+  color: #080a0d;
+  font-weight: 600;
+  border: 1px solid var(--accent-blue);
+}
+.btn-primary:hover {
+  background: #1ad4ff;
+  box-shadow: 0 0 28px rgba(0, 194, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   TAGS
+   ============================================================ */
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  padding: 0.22rem 0.6rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+}
+
+/* ============================================================
+   ANIMATED GRID BACKGROUND
+   ============================================================ */
+.grid-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.grid-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 194, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 194, 255, 0.035) 1px, transparent 1px);
+  background-size: 64px 64px;
+  animation: gridShift 25s linear infinite;
+}
+
+.grid-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(0, 194, 255, 0.07) 0%, transparent 65%);
+}
+
+@keyframes gridShift {
+  0%   { transform: translate(0, 0); }
+  100% { transform: translate(0, 64px); }
+}
+
+/* ============================================================
+   GLOW UTILITIES
+   ============================================================ */
+.glow-cyan {
+  box-shadow: 0 0 30px rgba(0, 194, 255, 0.15), 0 0 60px rgba(0, 194, 255, 0.05);
+}
+
+/* ============================================================
+   GLOBAL ANIMATIONS
+   ============================================================ */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .container { padding: 0 1.5rem; }
+}
+
+@media (max-width: 768px) {
+  .container { padding: 0 1rem; }
+  .section { padding: 4rem 0; }
+
+  .proof-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ============================================================
+   SELECTION COLOR
+   ============================================================ */
+::selection {
+  background: rgba(0, 194, 255, 0.25);
+  color: #fff;
+}
+
+* { box-sizing: border-box; }
